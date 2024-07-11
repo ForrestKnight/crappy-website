@@ -13,7 +13,7 @@
 - Small text or icons that lead to an extra page/Easter egg
 - Bait buttons that don’t do anything but inconspicuous text that are buttons
 - Random keyboard that you have to use with your mouse
-- Slow scroll for ToS (disable scroll + ALT?)
+- [X] Slow scroll for ToS (disable scroll + ALT?)
 - [X] Important paragraph that goes off the screen
 - [X] Exit button that doesn’t exist but grows in size as you click (have an inconspicuous exit button)
 - Normal button but the clickable area is small, like 5px and not in the center
