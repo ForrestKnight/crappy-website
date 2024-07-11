@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Flags from './components/Flags';
 import PopUp from './components/PopUp';
+import StartForm from './components/StartForm';
 
 function App() {
   const [showScrollPopup, setShowScrollPopup] = useState(false);
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
   const [showParagraphPopup, setShowParagraphPopup] = useState(false);
+  const [showStartForm, setShowStartForm] = useState(false);
   const [paragraphPopupSize, setParagraphPopupSize] = useState({ width: '300px', height: '200px'});
 
   useEffect(() => {
@@ -22,11 +24,18 @@ function App() {
   const handleNewsletterClick = () => {
     setShowNewsletterPopup(true);
   };
-  const handleExpandPopup =() => {
+  const handleExpandPopup = () => {
     setParagraphPopupSize((prevSize) => ({
       width: `${parseInt(prevSize.width) +10}px`,
       height: `${parseInt(prevSize.height) +10}px`,
     }))
+  }
+  const handleDangerPopupClose = () => {
+    setShowParagraphPopup(false);
+    setParagraphPopupSize({ width: '300px', height: '200px'})
+  }
+  const handleSecretClick = () => {
+    setShowStartForm(true);
   }
 
   const dangerPopupStyles = {
@@ -57,7 +66,6 @@ function App() {
       <PopUp
         message="IF YOU DO NOT FOLLLOW THESE INSTRUCTIONS, THE WEBSITE WILL "  
         isOpen={showParagraphPopup}
-        onClose={() => setShowParagraphPopup(false)}
         customStyles={dangerPopupStyles}
         showCloseButton={false}
         onExpand={handleExpandPopup}
@@ -65,9 +73,14 @@ function App() {
         <img src="/danger2.gif" alt="Danger" />
         <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', top: 0, left: 0, width: '50px' }}/>
         <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', top: 0, right: 0, width: '50px' }}/>
-        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', bottom: 0, left: 0, width: '50px' }} onClick={() => setShowParagraphPopup(false)}/>
+        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', bottom: 0, left: 0, width: '50px' }} onClick={handleDangerPopupClose}/>
         <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', bottom: 0, right: 0, width: '50px' }}/>
       </PopUp>
+      <PopUp
+        message="This is the start form."  
+        isOpen={showStartForm}
+        onClose={() => setShowStartForm(false)}
+        showCloseButton={true}/>
       <div className='welcome-gifs'>
         <img src="/welcome1.gif" alt="Welcome 1" className='welcome-gif1' />
         <img src="/welcome2.gif" alt="Welcome 2" className='welcome-gif2' />
@@ -80,6 +93,7 @@ function App() {
       <div className='important-paragraph' onClick={handleParagraphClick}>
         <p>This is an important paragraph that should be read carefully. The nuclear codes will be included at the end of the paragraph, SO MAKE SURE YOU READ IT!! The nuclear codes: 234, 94, 12033.</p>
       </div>
+      <StartForm onSecretClick={handleSecretClick} />
       <Flags/>
     </div>
   )
