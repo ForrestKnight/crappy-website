@@ -6,30 +6,67 @@ function App() {
   const [showScrollPopup, setShowScrollPopup] = useState(false);
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
   const [showParagraphPopup, setShowParagraphPopup] = useState(false);
-
+  const [paragraphPopupSize, setParagraphPopupSize] = useState({ width: '300px', height: '200px'});
 
   useEffect(() => {
     const timer =setTimeout(() => {
       setShowScrollPopup(true);
     }, 5000);
-
     return () => clearTimeout(timer);
   }, []);
-
+  
   const handleParagraphClick = () => {
     setShowParagraphPopup(true);
   };
-
   const handleNewsletterClick = () => {
     setShowNewsletterPopup(true);
   };
+  const handleExpandPopup =() => {
+    setParagraphPopupSize((prevSize) => ({
+      width: `${parseInt(prevSize.width) +10}px`,
+      height: `${parseInt(prevSize.height) +10}px`,
+    }))
+  }
+
+  const dangerPopupStyles = {
+    content: {
+      color: 'white',
+      border: '2px solid red',
+      background: 'black',
+      width: paragraphPopupSize.width,
+      height: paragraphPopupSize.height,
+      position: 'relative'
+    }
+  }
 
   return (
     <div className='app-container'>
       <h1>Welcome to my awesome new website.</h1>
-      <PopUp message="you're scrolling the wrong way idoit!" isOpen={showScrollPopup} onClose={() => setShowScrollPopup(false)}/>
-      <PopUp message="PLEASE SIGN UP TO MY NEWSLETRTER"  isOpen={showNewsletterPopup} onClose={() => setShowNewsletterPopup(false)}/>
-      <PopUp message="IF YOU DO NOT FOLLLOW THESE INSTRUCTIONS, THE WEBSITE WILL SELF DESTRUCT."  isOpen={showParagraphPopup} onClose={() => setShowParagraphPopup(false)}/>
+      <PopUp
+        message="you're scrolling the wrong way idoit!"
+        isOpen={showScrollPopup}
+        onClose={() => setShowScrollPopup(false)}
+        showCloseButton={true}
+      />
+      <PopUp
+        message="PLEASE SIGN UP TO MY NEWSLETRTER"  
+        isOpen={showNewsletterPopup}
+        onClose={() => setShowNewsletterPopup(false)}
+        showCloseButton={true}/>
+      <PopUp
+        message="IF YOU DO NOT FOLLLOW THESE INSTRUCTIONS, THE WEBSITE WILL "  
+        isOpen={showParagraphPopup}
+        onClose={() => setShowParagraphPopup(false)}
+        customStyles={dangerPopupStyles}
+        showCloseButton={false}
+        onExpand={handleExpandPopup}
+      >
+        <img src="/danger2.gif" alt="Danger" />
+        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', top: 0, left: 0, width: '50px' }}/>
+        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', top: 0, right: 0, width: '50px' }}/>
+        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', bottom: 0, left: 0, width: '50px' }} onClick={() => setShowParagraphPopup(false)}/>
+        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', bottom: 0, right: 0, width: '50px' }}/>
+      </PopUp>
       <div className='welcome-gifs'>
         <img src="/welcome1.gif" alt="Welcome 1" className='welcome-gif1' />
         <img src="/welcome2.gif" alt="Welcome 2" className='welcome-gif2' />
