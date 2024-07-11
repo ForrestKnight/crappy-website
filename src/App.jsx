@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import Flags from './components/Flags';
 import PopUp from './components/PopUp';
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
       <div className='important-paragraph' onClick={handleParagraphClick}>
         <p>This is an important paragraph that should be read carefully. The nuclear codes will be included at the end of the paragraph, SO MAKE SURE YOU READ IT!! The nuclear codes: 234, 94, 12033.</p>
       </div>
+      <Flags/>
     </div>
   )
 }
