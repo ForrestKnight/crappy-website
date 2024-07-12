@@ -10,16 +10,15 @@
 - [X] Comic sans + times new romans (a lot of text)
 - Captchas everywhere (or just one gnarly captcha)
 - [X] Popups (that are actually manageable) error messages, chat box, cookies that you have to say yes to… plus include sfx on some
-- Small text or icons that lead to an extra page/Easter egg
+- [X] Small text or icons that lead to an extra page/Easter egg
 - Bait buttons that don’t do anything but inconspicuous text that are buttons
-- Random keyboard that you have to use with your mouse
+- [X] Random keyboard that you have to use with your mouse
 - [X] Slow scroll for ToS (disable scroll + ALT?)
 - [X] Important paragraph that goes off the screen
 - [X] Exit button that doesn’t exist but grows in size as you click (have an inconspicuous exit button)
 - Normal button but the clickable area is small, like 5px and not in the center
-- Add some password protections (click on a random spinning gif to popup password?)
-- Broken links
-- Some background music but make it difficult to turn off
+- [X] Add some password protections (click on a random spinning gif to popup password?)
+- [X] Broken links
 - Misleading labels
 - Make button taller on hover
 - Some captcha images are tiny and some are giant

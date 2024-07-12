@@ -12,13 +12,60 @@ function App() {
   const [showStartForm, setShowStartForm] = useState(false);
   const [paragraphPopupSize, setParagraphPopupSize] = useState({ width: '300px', height: '200px'});
   const [popupTop, setPopupTop] = useState(90);
+  const [showBillGates, setShowBillGates] = useState(false);
   const flagsRef = useRef(null);
+  const dvdRef = useRef(null);
+  const [dvdPosition, setDvdPosition] = useState({ x: 0, y: 0 });
+  const [dvdVelocity, setDvdVelocity] = useState({ x: 2, y: 2 });
 
   useEffect(() => {
+    const moveDvd = () => {
+      setDvdPosition(prevPosition => {
+        let newX = prevPosition.x + dvdVelocity.x;
+        let newY = prevPosition.y + dvdVelocity.y;
+        const dvdWidth = dvdRef.current.clientWidth;
+        const dvdHeight = dvdRef.current.clientHeight;
+
+        // Check for collision with the left or right edge
+        if (newX <= 0 || newX >= window.innerWidth - dvdWidth) {
+          setDvdVelocity(prevVelocity => ({ ...prevVelocity, x: -prevVelocity.x }));
+          newX = Math.max(0, Math.min(newX, window.innerWidth - dvdWidth));
+        }
+
+        // Check for collision with the top or bottom edge
+        if (newY <= 0 || newY >= window.innerHeight - dvdHeight) {
+          setDvdVelocity(prevVelocity => ({ ...prevVelocity, y: -prevVelocity.y }));
+          newY = Math.max(0, Math.min(newY, window.innerHeight - dvdHeight));
+        }
+
+        return { x: newX, y: newY };
+      });
+    };
+
+    const intervalId = setInterval(moveDvd, 20);
+
+    return () => clearInterval(intervalId);
+  }, [dvdVelocity]);
+
+  useEffect(() => {
+    const handleScroll = (e) => {
+      e.preventDefault();
+      window.scrollBy({
+        top: -e.deltaY,
+        left: 0,
+      });
+    }
+
+    window.addEventListener('wheel', handleScroll, { passive: false });
+
     const timer =setTimeout(() => {
       setShowScrollPopup(true);
     }, 5000);
-    return () => clearTimeout(timer);
+
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+      clearTimeout(timer)
+    };
   }, []);
   
   const handleParagraphClick = () => {
@@ -49,6 +96,12 @@ function App() {
   const handleSecretClick = () => {
     setShowStartForm(true);
   }
+  const handleWindows95Click = () => {
+    setShowBillGates(true);
+    setTimeout(() => {
+      setShowBillGates(false);
+    }, 1350);
+  };
 
   const dangerPopupStyles = {
     content: {
@@ -145,9 +198,18 @@ function App() {
 
   return (
     <div className='app-container'>
+      <div className="dvd-container">
+        <img
+          src="/dvd.png"
+          alt="DVD"
+          className='dvd'
+          ref={dvdRef}
+          style={{ transform: `translate(${dvdPosition.x}px, ${dvdPosition.y}px)` }}
+        />
+      </div>
       <h1>Welcome to my awesome new website.</h1>
       <PopUp
-        message="you're scrolling the wrong way idoit!"
+        message="you're scrolling the wrong way, idoit."
         isOpen={showScrollPopup}
         onClose={() => setShowScrollPopup(false)}
         showCloseButton={true}
@@ -209,10 +271,16 @@ function App() {
         <p>This is an important paragraph that should be read carefully. The nuclear codes will be included at the end of the paragraph, SO MAKE SURE YOU READ IT!! The nuclear codes: 234, 94, 12033.</p>
       </div>
       <StartForm onSecretClick={handleSecretClick} />
+      <marquee behavior="scroll" direction="right">
+        <img src="/pirate-ship2.gif" alt="Ship"/>
+      </marquee>
       <div>
-        <img src="/news.gif" alt="Welcome 4" className='welcome-gif4' onClick={handleNewsletterClick} />
-        <img src="/password.gif" alt="Welcome 4" className='welcome-gif4' onClick={handlePasswordClick} />
+        <img src="/news.gif" alt="News" className='news' onClick={handleNewsletterClick} />
+        <img src="/password.gif" alt="Password" className='password' onClick={handlePasswordClick} />
+        <img src="/windows95.gif" alt="Windows 95" className='windows95' onClick={handleWindows95Click} />
+        {showBillGates && <img src="/billgates.gif" alt="Bill Gates" className='billgates' />}
       </div>
+      <h3>hi, i'm forrest and this is my website. i've put a lot of work into this website by creating something that is the opposite of good design. scrolling doesn't owrk right, some things you can click that you shouldn't and can't click that you should. the form is probably my favorite. plus there areh hidden Easter eggs and a huge surprise at the end! but you have to work for it. good luck </h3>
       <Flags ref={flagsRef}/>
     </div>
   )
