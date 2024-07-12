@@ -90,6 +90,32 @@ function App() {
     },
   }; 
 
+  const newsletterStyles = {
+    content: {
+      bottom: '10px',
+      left: '10px',
+      top: 'auto',
+      right: 'auto',
+      marginRight: '0',
+      width: '300px',
+      height: 'auto',
+      padding: '10px',
+      background: 'black',
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+      color: 'white',
+      fontFamily: 'Times News Romans',
+      fontSize: 'x-small',
+      zIndex: 1000,
+      pointerEvents: 'auto',
+    },
+    overlay: {
+      backgroundColor: 'transparent',
+      pointerEvents: 'none',
+    },
+  }; 
+
   const passwordStyles = {
     content: {
       top: `${popupTop}%`,
@@ -128,10 +154,21 @@ function App() {
         customStyles={idiotStyles}
       />
       <PopUp
-        message="PLEASE SIGN UP TO MY NEWSLETRTER"  
+        message="PLs SigN 2 NEwsLeETRTER"  
         isOpen={showNewsletterPopup}
         onClose={() => setShowNewsletterPopup(false)}
-        showCloseButton={true}/>
+        showCloseButton={true}
+        customStyles={newsletterStyles}
+      >
+        <iframe 
+          src="https://embeds.beehiiv.com/28695e29-e6a9-47e8-aec0-cc669b6c7553?slim=true" 
+          data-test-id="beehiiv-embed" 
+          height="52" 
+          frameBorder="0" 
+          scrolling="no" 
+          style={{ margin: 0, borderRadius: '0px !important', backgroundColor: 'transparent' }}
+        ></iframe>
+      </PopUp>
       <PopUp
         message="IF YOU DO NOT FOLLLOW THESE INSTRUCTIONS, THE WEBSITE WILL "  
         isOpen={showParagraphPopup}

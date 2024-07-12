@@ -9,7 +9,7 @@
 - [X] No white space + starry night or crazy color crappy graphics background
 - [X] Comic sans + times new romans (a lot of text)
 - Captchas everywhere (or just one gnarly captcha)
-- Popups (that are actually manageable) error messages, chat box, cookies that you have to say yes to… plus include sfx on some
+- [X] Popups (that are actually manageable) error messages, chat box, cookies that you have to say yes to… plus include sfx on some
 - Small text or icons that lead to an extra page/Easter egg
 - Bait buttons that don’t do anything but inconspicuous text that are buttons
 - Random keyboard that you have to use with your mouse
