@@ -5,7 +5,7 @@
 - [X] Welcome gifs
 - Under construction
 - [X] **Change the cursor to a loading animation**
-- Reverse scrolling (after 4 seconds say or on recognizing scrolling, have popup say “you’re scrolling the wrong way, idiot”)
+- [X] Reverse scrolling (after 4 seconds say or on recognizing scrolling, have popup say “you’re scrolling the wrong way, idiot”)
 - [X] No white space + starry night or crazy color crappy graphics background
 - [X] Comic sans + times new romans (a lot of text)
 - Captchas everywhere (or just one gnarly captcha)
@@ -20,11 +20,10 @@
 - [X] Add some password protections (click on a random spinning gif to popup password?)
 - [X] Broken links
 - Misleading labels
-- Make button taller on hover
 - Some captcha images are tiny and some are giant
-- Infinite scrolling on a second page to make someone think there’s a surprise at the bottom
+- Second page is super tall and long scrolling to something like "hi" at the bottom
 - [X] Flags of my viewers nations
-- Random bright colors for text and labels
-- Crappy navigation
-- Text misalignment
+- [X] Random bright colors for text and labels
+- [X] Crappy navigation
+- [X] Text misalignment
 
