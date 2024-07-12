@@ -40,6 +40,56 @@
    font-family: 'Comic Sans MS';
 }
 
-.switch-case {
-   width: 100px;
+.password-text {
+   font-size: small;
+   font-family: 'Comic Sans MS';
 }
+
+.reward-page {
+   text-align: center;
+   background-color: #ffcc99;
+   font-family: 'Comic Sans MS', cursive, sans-serif;
+   padding: 20px;
+   border: 5px solid #ff66cc;
+ }
+ 
+ .congratulations {
+   font-size: 3em;
+   color: #ff0000;
+   text-shadow: 2px 2px #00ff00;
+ }
+ 
+ .marquee {
+   font-size: 2em;
+   color: #0000ff;
+   background-color: #ffff00;
+   padding: 10px;
+   border: 2px solid #000;
+   margin-bottom: 20px;
+ }
+ 
+ .gifs img {
+   max-width: 300px;
+   max-height: 150px;
+   margin: 10px;
+ }
+
+ .congrats-gif {
+   transform: rotate(-13deg);
+ }
+ 
+ .message {
+   font-size: 1.5em;
+   color: #000;
+   margin-top: 20px;
+ }
+ 
+ .music-player {
+   margin-top: 20px;
+ }
+ 
+ .pirate-ship {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+ }

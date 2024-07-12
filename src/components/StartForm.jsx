@@ -25,10 +25,10 @@ const StartForm = () => {
           setStep(3);
         }, 1000);
       } else if (step === 4) {
-        if (validateUsername(inputUsername) && validatePassword(inputPassword)) {
+        if (inputPassword === "P@ssw0rd!23#" || inputPassword === "b0rh5") {
           setStep(5);
         } else {
-          setErrorMessage("The username must be exactly 6 characters long and include only letters. The password must be exactly 8 characters long, include at least one number, one uppercase letter, one lowercase letter, and one special character.");
+            setErrorMessage("The password is incorrect. Please enter the exact password you found.");
         }
       } else if (step === 5) {
         setStep(6);
@@ -74,31 +74,21 @@ const StartForm = () => {
       }
    }, [step]);
 
-   const validateUsername = (username) => {
-      const lengthRequirement = username.length === 6;
-      const lettersOnlyRequirement = /^[A-Za-z]+$/.test(username);
-      return lengthRequirement && lettersOnlyRequirement;
-   };
-    
-    const validatePassword = (password) => {
-      const lengthRequirement = password.length === 8;
-      const numberRequirement = /\d/.test(password);
-      const uppercaseRequirement = /[A-Z]/.test(password);
-      const lowercaseRequirement = /[a-z]/.test(password);
-      const specialCharRequirement = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-      return lengthRequirement && numberRequirement && uppercaseRequirement && lowercaseRequirement && specialCharRequirement;
-   };
-
    const handleKeyboardClick = (char) => {
-      const charToInsert = isUppercase ? char.toUpperCase() : char.toLowerCase();
-      if (activeField === "username") {
-        setInputUsername((prev) => prev + charToInsert);
-        document.getElementById("username").focus();
-      } else if (activeField === "password") {
-        setInputPassword((prev) => prev + charToInsert);
-        document.getElementById("password").focus();
+      if (char === "BACKSPACE") {
+        if (activeField === "password") {
+          setInputPassword((prev) => prev.slice(0, -1));
+          document.getElementById("password").focus();
+        }
+      } else {
+        const charToInsert = isUppercase ? char.toUpperCase() : char.toLowerCase();
+        if (activeField === "password") {
+          setInputPassword((prev) => prev + charToInsert);
+          document.getElementById("password").focus();
+        }
       }
    };
+    
 
    return (
       <div className="start-form">
@@ -212,7 +202,8 @@ const StartForm = () => {
          {step === 2 && (
             <>
                <p>Thanks for signing over your life. Hope you read the fine print.</p>
-               {setTimeout(() => setStep(3), 1000)}
+               <p className="password-text">Password is: P@ssw0rd!23#</p>
+               {setTimeout(() => setStep(3), 2500)}
             </>
          )}
          {step === 3 && (
@@ -227,19 +218,7 @@ const StartForm = () => {
          )}
          {step === 4 && (
             <>
-               <p>Enter a username and password that meet the following requirements:</p>
-               <ul>
-                  <li>Username: Exactly 6 characters long and only letters</li>
-                  <li>Password: Exactly 8 characters long, at least one number, one uppercase letter, one lowercase letter, and one special character</li>
-               </ul>
-               <input
-                  type="text"
-                  id="username"
-                  placeholder="Username"
-                  value={inputUsername}
-                  onClick={() => setActiveField("username")}
-                  onKeyDown={(e) => e.preventDefault()}
-               />
+               <p>I hope you memorized that password! Enter it exactly as you remember it.</p>
                <input
                   type="text"
                   id="password"
@@ -249,26 +228,52 @@ const StartForm = () => {
                   onKeyDown={(e) => e.preventDefault()}
                />
                <div className="on-screen-keyboard">
-                  {'KQO56#$%A3MW^7*RL@J!2VFXNBHUEZITPDSG8CY0149'.split('').map(char => (
-                     <button type="button" key={char} onClick={() => handleKeyboardClick(char)}>{char}</button>
-                  ))}
+                  {isUppercase
+                     ? 'KQO56#$%A3MW^7*RL@J!2VFXNBHUEZITPDSG8CY0149'.split('').map(char => (
+                        <button type="button" key={char} onClick={() => handleKeyboardClick(char)}>{char}</button>
+                     ))
+                     : 'z3jqkn*@$2g1ty^wv4opd8afmu%b0rh5ie6cl7!xs9#'.split('').map(char => (
+                        <button type="button" key={char} onClick={() => handleKeyboardClick(char)}>{char}</button>
+                     ))
+                  }   
                   <button type="button" onClick={toggleCase}>
                      {isUppercase ? "low" : "UP"}
+                  </button>
+                  <button type="button" onClick={() => handleKeyboardClick("BACKSPACE")}>⌫
                   </button>
                </div>
                <button onClick={handleNextStep}>Submit</button>
                {errorMessage && <p className="error-message">{errorMessage}</p>}
             </>
             )}
+            {step === 5 && (
+            <div className="reward-page">
+               <h1 className="congratulations">Congratulations!</h1>
+               <marquee behavior="scroll" direction="left">
+                  <img src="/pirate-flag.gif" alt="Pirate Ship" />
+                  You've completed the form! Welcome to the secret club
+                  <img src="/pirate-flag.gif" alt="Pirate Ship" />
+               </marquee>
+               <div className="gifs">
+                  <img src="/congrats1.gif" alt="Congrats" className="congrats-gif"/>
+                  <img src="/dancing-baby.gif" alt="Dancing Baby" />
+                  <img src="/fireworks.gif" alt="Fireworks" />
+               </div>
+               <p className="message">
+                  Welcome to the best website of 1999! Enjoy your stay and don't forget to sign our guestbook!
+               </p>
+               <div className="music-player">
+                  <audio controls autoPlay>
+                  <source src="/midi_music.mp3" type="audio/mp3" />
+                  Your browser does not support the audio element.
+                  </audio>
+               </div>
+            </div>
+            )}
 
-         {step === 5 && (
-            // crazy captcha
-            <p>Thanks for signing over your life. Hope you read the fine print.</p>
-         )}
-         {step === 6 && (
-            // reward w/ password
-            <p>Thanks for signing over your life. Hope you read the fine print.</p>
-         )}
+         {/* {step === 6 && (
+            //I'll add crazy captcha at step 5 if i have time
+         )} */}
       </div>
    )
 }
