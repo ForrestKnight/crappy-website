@@ -259,7 +259,7 @@ const StartForm = () => {
             <div className="reward-page">
                <h1 className="congratulations">Congratulations!</h1>
                <marquee behavior="scroll" direction="left">
-                  <img src="/pirate-flag.gif" alt="Pirate Ship" />
+                  <img src="/pirate-flag.gif" alt="Pirate Flag" />
                   You've completed the form! Welcome to the secret club
                   <img src="/pirate-flag.gif" alt="Pirate Ship" />
                </marquee>

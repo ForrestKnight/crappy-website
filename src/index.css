@@ -62,10 +62,6 @@ body {
   transform: rotate(-23deg);
 }
 
-.password {
-
-}
-
 .billgates {
   position: absolute;
   top: 50%;
@@ -88,6 +84,14 @@ body {
   width: 100px; 
   height: 100px; 
   pointer-events: auto;
+}
+
+.waterbar {
+  width: 200%;
+  right: 50%;
+  height: 100px;
+  background: url('/waterbar.gif') repeat-x;
+  position: relative;
 }
 
 @keyframes riseUp {

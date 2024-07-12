@@ -272,8 +272,9 @@ function App() {
       </div>
       <StartForm onSecretClick={handleSecretClick} />
       <marquee behavior="scroll" direction="right">
-        <img src="/pirate-ship2.gif" alt="Ship"/>
+        <img src="/pirate-ship1.gif" alt="Ship"/>
       </marquee>
+      <div className='waterbar'></div>
       <div>
         <img src="/news.gif" alt="News" className='news' onClick={handleNewsletterClick} />
         <img src="/password.gif" alt="Password" className='password' onClick={handlePasswordClick} />
