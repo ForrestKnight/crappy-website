@@ -55,3 +55,7 @@ h2 {
   bottom: 0;
   justify-content: center;
 }
+
+.tos-text {
+  overflow-y:hidden;
+}
