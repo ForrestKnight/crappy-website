@@ -4,12 +4,14 @@ import '../styles/StartForm.css';
 const StartForm = () => {
    const [step, setStep] = useState(0);
    const [checked, setChecked] = useState(false);
-   const [inputUsername, setInputUsername] = useState("");
    const [inputPassword, setInputPassword] = useState("");
    const [errorMessage, setErrorMessage] = useState("");
    const [scrolledToBottom, setScrollToBottom] = useState(false);
-   const [activeField, setActiveField] = useState("username");
+   const [activeField, setActiveField] = useState("password");
    const [isUppercase, setIsUppercase] = useState(true);
+   const [guestName, setGuestName] = useState("");
+   const [guestComment, setGuestComment] = useState("");
+   const [guestbookEntries, setGuestbookEntries] = useState([]);
    const tosRef = useRef(null);
 
    const toggleCase = () => {
@@ -88,7 +90,14 @@ const StartForm = () => {
         }
       }
    };
-    
+
+   const handleGuestbookSubmit = (e) => {
+      e.preventDefault();
+      const newEntry = { name: guestName, comment: guestComment };
+      setGuestbookEntries([...guestbookEntries, newEntry]);
+      setGuestName("");
+      setGuestComment("");
+    };
 
    return (
       <div className="start-form">
@@ -268,7 +277,35 @@ const StartForm = () => {
                   Your browser does not support the audio element.
                   </audio>
                </div>
+               <div className="guestbook">
+                  <h2>Guestbook</h2>
+                  <form onSubmit={handleGuestbookSubmit}>
+                  <input
+                     type="text"
+                     placeholder="Your Name"
+                     value={guestName}
+                     onChange={(e) => setGuestName(e.target.value)}
+                     required
+                  />
+                  <textarea
+                     placeholder="Your Comment"
+                     value={guestComment}
+                     onChange={(e) => setGuestComment(e.target.value)}
+                     required
+                  />
+                  <button type="submit">Sign Guestbook</button>
+                  </form>
+                  <div className="guestbook-entries">
+                  {guestbookEntries.map((entry, index) => (
+                     <div key={index} className="guestbook-entry">
+                        <h3>{entry.name}</h3>
+                        <p>{entry.comment}</p>
+                     </div>
+                  ))}
+                  </div>
+               </div>
             </div>
+            
             )}
 
          {/* {step === 6 && (

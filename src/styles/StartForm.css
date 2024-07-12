@@ -53,11 +53,21 @@
    border: 5px solid #ff66cc;
  }
  
+ @keyframes flash {
+   0%, 100% {
+     color: #ff0000;
+     text-shadow: 2px 2px #00ff00;
+   }
+   50% {
+     color: #00ff00;
+     text-shadow: 2px 2px #ff0000;
+   }
+ }
+ 
  .congratulations {
    font-size: 3em;
-   color: #ff0000;
-   text-shadow: 2px 2px #00ff00;
- }
+   animation: flash 1s infinite;
+ } 
  
  .marquee {
    font-size: 2em;
@@ -88,8 +98,81 @@
    margin-top: 20px;
  }
  
- .pirate-ship {
-   position: absolute;
-   width: 100%;
-   height: 100%;
+ .guestbook {
+   margin-top: 20px;
+ }
+ 
+
+ .guestbook h2 {
+   font-size: 3em;
+   font-weight: bold;
+   margin-bottom: 10px;
+   background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red, orange, yellow, green, blue, indigo, violet);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-size: 218% 200%;
+   animation: rainbow 4s linear infinite;
+ }
+ 
+ @keyframes rainbow {
+   0% {
+     background-position: 0% 50%;
+   }
+   100% {
+     background-position: 100% 50%;
+   }
+ }
+ 
+ 
+ .guestbook form {
+   display: flex;
+   flex-direction: column;
+   align-items: left;
+ }
+ 
+ .guestbook input, .guestbook textarea {
+   font-family: 'Times New Romans';
+   font-size: 1em;
+   margin-bottom: 10px;
+   padding: 10px;
+   width: 80%;
+   max-width: 500px;
+   border: 2px solid #000;
+   border-radius: 5px;
+ }
+ 
+ .guestbook button {
+   font-family: 'Times New Romans';
+   font-size: 1em;
+   padding: 10px 20px;
+   background-color: #ff66cc;
+   border: 2px solid #000;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+ 
+ .guestbook-entries {
+   font-family: 'Times New Romans';
+   margin-top: 20px;
+   text-align: left;
+ }
+ 
+ .guestbook-entry {
+   background-color: #fff;
+   padding: 10px;
+   margin-bottom: 10px;
+   border: 2px solid #000;
+   border-radius: 5px;
+ }
+ 
+ .guestbook-entry h3 {
+   margin: 0;
+   font-size: 1.2em;
+   color: #0000ff;
+ }
+ 
+ .guestbook-entry p {
+   margin: 5px 0 0 0;
+   font-size: 1em;
+   color: #000;
  }

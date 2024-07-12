@@ -56,3 +56,12 @@ h2 {
   bottom: 0;
   justify-content: center;
 }
+
+@keyframes riseUp {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: 79%;
+  }
+}
