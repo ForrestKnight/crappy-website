@@ -51,7 +51,8 @@ h2 {
 }
 
 .flag-footer {
-  position: fixed;
+  /* position: fixed; */
+  margin-top: 40px;
   bottom: 0;
   justify-content: center;
 }

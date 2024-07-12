@@ -24,3 +24,22 @@
    font-family: 'Times New Roman', Times, serif;
    overflow-y: scroll;
 }
+
+.on-screen-keyboard {
+   display: flex;
+   flex-wrap: wrap;
+   margin-top: 20px;
+   justify-content: center;
+}
+
+.on-screen-keyboard button {
+   width: 50px;
+   height: 50px;
+   margin: 2px;
+   font-size: 20px;
+   font-family: 'Comic Sans MS';
+}
+
+.switch-case {
+   width: 100px;
+}

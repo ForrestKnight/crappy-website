@@ -4,15 +4,37 @@ import '../styles/StartForm.css';
 const StartForm = () => {
    const [step, setStep] = useState(0);
    const [checked, setChecked] = useState(false);
+   const [inputUsername, setInputUsername] = useState("");
+   const [inputPassword, setInputPassword] = useState("");
+   const [errorMessage, setErrorMessage] = useState("");
+   const [scrolledToBottom, setScrollToBottom] = useState(false);
+   const [activeField, setActiveField] = useState("username");
+   const [isUppercase, setIsUppercase] = useState(true);
    const tosRef = useRef(null);
+
+   const toggleCase = () => {
+      setIsUppercase(prevState => !prevState);
+   }
 
    const handleNextStep = () => {
       if (step === 0) {
-         setStep(1);
+        setStep(1);
       } else if (step === 1 && checked) {
-         setStep(2);
+        setStep(2);
+        setTimeout(() => {
+          setStep(3);
+        }, 1000);
+      } else if (step === 4) {
+        if (validateUsername(inputUsername) && validatePassword(inputPassword)) {
+          setStep(5);
+        } else {
+          setErrorMessage("The username must be exactly 6 characters long and include only letters. The password must be exactly 8 characters long, include at least one number, one uppercase letter, one lowercase letter, and one special character.");
+        }
+      } else if (step === 5) {
+        setStep(6);
       }
-   }
+   };
+    
 
    useEffect(() => {
       if (step === 1 && tosRef.current) {
@@ -20,9 +42,19 @@ const StartForm = () => {
             e.preventDefault();
             tosRef.current.scrollTop += e.deltaY * 0.03;
          };
+
+         const checkScrollPosition = () => {
+            if (tosRef.current.scrollTop + tosRef.current.clientHeight >= tosRef.current.scrollHeight) {
+               setScrollToBottom(true);
+            }
+         }
+
          const tosElement = tosRef.current;
          tosElement.addEventListener('wheel', slowScroll);
+         tosElement.addEventListener('scroll', checkScrollPosition);
+
          const preventDefault = (e) => e.preventDefault();
+
          const handleKeyDown = (e) => {
             if (e.key === 'PageUp' || e.key === 'PageDown') {
                e.preventDefault();
@@ -35,11 +67,38 @@ const StartForm = () => {
 
          return () => {
             tosElement.removeEventListener('wheel', slowScroll);
+            tosElement.removeEventListener('scroll', checkScrollPosition);
             tosElement.removeEventListener('mousedown', preventDefault);
             tosElement.removeEventListener('keydown', handleKeyDown);
          }
       }
    }, [step]);
+
+   const validateUsername = (username) => {
+      const lengthRequirement = username.length === 6;
+      const lettersOnlyRequirement = /^[A-Za-z]+$/.test(username);
+      return lengthRequirement && lettersOnlyRequirement;
+   };
+    
+    const validatePassword = (password) => {
+      const lengthRequirement = password.length === 8;
+      const numberRequirement = /\d/.test(password);
+      const uppercaseRequirement = /[A-Z]/.test(password);
+      const lowercaseRequirement = /[a-z]/.test(password);
+      const specialCharRequirement = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+      return lengthRequirement && numberRequirement && uppercaseRequirement && lowercaseRequirement && specialCharRequirement;
+   };
+
+   const handleKeyboardClick = (char) => {
+      const charToInsert = isUppercase ? char.toUpperCase() : char.toLowerCase();
+      if (activeField === "username") {
+        setInputUsername((prev) => prev + charToInsert);
+        document.getElementById("username").focus();
+      } else if (activeField === "password") {
+        setInputPassword((prev) => prev + charToInsert);
+        document.getElementById("password").focus();
+      }
+   };
 
    return (
       <div className="start-form">
@@ -144,13 +203,70 @@ const StartForm = () => {
                   To the extent that the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.
                </textarea>
                <div>
-                  <input type="checkbox" id="tosCheck" onChange={() => setChecked(!checked)} />
+                  <input type="checkbox" id="tosCheck" onChange={() => setChecked(!checked)} disabled={!scrolledToBottom} />
                   <label htmlFor="tosCheck"> I agree to the Terms of Service</label>
                </div>
                <button className="tos-button" onClick={handleNextStep} disabled={!checked}>Okay</button>
             </>
          )}
          {step === 2 && (
+            <>
+               <p>Thanks for signing over your life. Hope you read the fine print.</p>
+               {setTimeout(() => setStep(3), 1000)}
+            </>
+         )}
+         {step === 3 && (
+            <>
+               <p>Solve this puzzle to continue:</p>
+               <div className="puzzle">
+                  <p>This is an unintuitive puzzle. Try to guess if you dare.</p>
+                  <button onClick={() => setStep(4)}>Click on me if you think I am the answer.</button>
+                  <p className="hint">Hint: It is not as obvious as you think.</p>
+               </div>
+            </>
+         )}
+         {step === 4 && (
+            <>
+               <p>Enter a username and password that meet the following requirements:</p>
+               <ul>
+                  <li>Username: Exactly 6 characters long and only letters</li>
+                  <li>Password: Exactly 8 characters long, at least one number, one uppercase letter, one lowercase letter, and one special character</li>
+               </ul>
+               <input
+                  type="text"
+                  id="username"
+                  placeholder="Username"
+                  value={inputUsername}
+                  onClick={() => setActiveField("username")}
+                  onKeyDown={(e) => e.preventDefault()}
+               />
+               <input
+                  type="text"
+                  id="password"
+                  placeholder="Password"
+                  value={inputPassword}
+                  onClick={() => setActiveField("password")}
+                  onKeyDown={(e) => e.preventDefault()}
+               />
+               <div className="on-screen-keyboard">
+                  {'KQO56#$%A3MW^7*RL@J!2VFXNBHUEZITPDSG8CY0149'.split('').map(char => (
+                     <button type="button" key={char} onClick={() => handleKeyboardClick(char)}>{char}</button>
+                  ))}
+                  <button type="button" onClick={toggleCase}>
+                     {isUppercase ? "low" : "UP"}
+                  </button>
+               </div>
+               <button onClick={handleNextStep}>Submit</button>
+               {errorMessage && <p className="error-message">{errorMessage}</p>}
+            </>
+            )}
+
+         {step === 5 && (
+            // crazy captcha
+            <p>Thanks for signing over your life. Hope you read the fine print.</p>
+         )}
+         {step === 6 && (
+            // reward w/ password
             <p>Thanks for signing over your life. Hope you read the fine print.</p>
          )}
       </div>
