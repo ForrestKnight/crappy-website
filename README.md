@@ -27,3 +27,10 @@
 - [X] Crappy navigation
 - [X] Text misalignment
 
+``` mermaid
+flowchart TB
+    A["Home Page"] -- Find Button --> B("ToS")
+    B -- Remember Password --> C("Solve Puzzle")
+    C --> D["fa:fa-lock Enter Password (if you can)"]
+    D -- Three --> F["Secret Stuff"]
+```
