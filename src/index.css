@@ -16,6 +16,20 @@
 
 body {
   overflow-x: hidden;
+  margin: 0;
+}
+
+.section-one {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.section-two {
+  background: url('/house.gif') no-repeat;
+  background-size: cover;
+  padding: 20px;
 }
 
 .welcome-gifs {
@@ -42,6 +56,7 @@ body {
   margin: 20px;
   padding: 10px;
   left: 75%;
+  transform: translateX(-5%);
   background-color: rgba(255, 0, 0, 0.2);
   border: 1px solid red;
 }
@@ -60,6 +75,10 @@ body {
 
 .news {
   transform: rotate(-23deg);
+}
+
+.password {
+
 }
 
 .billgates {

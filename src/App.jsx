@@ -198,93 +198,97 @@ function App() {
 
   return (
     <div className='app-container'>
-      <div className="dvd-container">
-        <img
-          src="/dvd.png"
-          alt="DVD"
-          className='dvd'
-          ref={dvdRef}
-          style={{ transform: `translate(${dvdPosition.x}px, ${dvdPosition.y}px)` }}
-        />
-      </div>
-      <h1>Welcome to my awesome new website.</h1>
-      <PopUp
-        message="you're scrolling the wrong way, idoit."
-        isOpen={showScrollPopup}
-        onClose={() => setShowScrollPopup(false)}
-        showCloseButton={true}
-        customStyles={idiotStyles}
-      />
-      <PopUp
-        message="PLs SigN 2 NEwsLeETRTER"  
-        isOpen={showNewsletterPopup}
-        onClose={() => setShowNewsletterPopup(false)}
-        showCloseButton={true}
-        customStyles={newsletterStyles}
-      >
-        <iframe 
-          src="https://embeds.beehiiv.com/28695e29-e6a9-47e8-aec0-cc669b6c7553?slim=true" 
-          data-test-id="beehiiv-embed" 
-          height="52" 
-          frameBorder="0" 
-          scrolling="no" 
-          style={{ margin: 0, borderRadius: '0px !important', backgroundColor: 'transparent' }}
-        ></iframe>
-      </PopUp>
-      <PopUp
-        message="IF YOU DO NOT FOLLLOW THESE INSTRUCTIONS, THE WEBSITE WILL "  
-        isOpen={showParagraphPopup}
-        customStyles={dangerPopupStyles}
-        showCloseButton={false}
-        onExpand={handleExpandPopup}
-      >
-        <img src="/danger2.gif" alt="Danger" />
-        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', top: 0, left: 0, width: '50px' }}/>
-        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', top: 0, right: 0, width: '50px' }}/>
-        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', bottom: 0, left: 0, width: '50px' }} onClick={handleDangerPopupClose}/>
-        <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', bottom: 0, right: 0, width: '50px' }}/>
-      </PopUp>
-      <PopUp
-        message="lol, you thought"
-        isOpen={showPasswordPopup}
-        onClose={() => setShowPasswordPopup(false)}
-        showCloseButton={true}
-        customStyles={passwordStyles}
-      >
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img src="/bush_laughing.gif" alt="laughing-at-you" />
-          <div style={{ marginLeft: '10px' }}>
-            <button onClick={handleArrowClick} style={{ position: 'absolute', top: 0, right: 0 }}>V</button>
-          </div>
+      <div className="section-one">
+        <div className="dvd-container">
+          <img
+            src="/dvd.png"
+            alt="DVD"
+            className='dvd'
+            ref={dvdRef}
+            style={{ transform: `translate(${dvdPosition.x}px, ${dvdPosition.y}px)` }}
+          />
         </div>
-      </PopUp>
-      <div className='welcome-gifs'>
-        <img src="/welcome1.gif" alt="Welcome 1" className='welcome-gif1' />
-        <img src="/welcome2.gif" alt="Welcome 2" className='welcome-gif2' />
-        <img src="/welcome3.gif" alt="Welcome 3" className='welcome-gif3' />
-        <img src="/welcome4.gif" alt="Welcome 4" className='welcome-gif4' onClick={handleScrollToBottom} />
-        <img src="welcome10.gif" alt=" " className='welcome-gif' />
-        <img src="/welcome5.gif" alt="Welcome 5" className='welcome-gif5' />
-        <img src="/welcome6.gif" alt="Welcome 6" className='welcome-gif6' />
+        <h1>Welcome to my awesome new website.</h1>
+        <PopUp
+          message="you're scrolling the wrong way, idoit."
+          isOpen={showScrollPopup}
+          onClose={() => setShowScrollPopup(false)}
+          showCloseButton={true}
+          customStyles={idiotStyles}
+        />
+        <PopUp
+          message="PLs SigN 2 NEwsLeETRTER"  
+          isOpen={showNewsletterPopup}
+          onClose={() => setShowNewsletterPopup(false)}
+          showCloseButton={true}
+          customStyles={newsletterStyles}
+        >
+          <iframe 
+            src="https://embeds.beehiiv.com/28695e29-e6a9-47e8-aec0-cc669b6c7553?slim=true" 
+            data-test-id="beehiiv-embed" 
+            height="52" 
+            frameBorder="0" 
+            scrolling="no" 
+            style={{ margin: 0, borderRadius: '0px !important', backgroundColor: 'transparent' }}
+          ></iframe>
+        </PopUp>
+        <PopUp
+          message="IF YOU DO NOT FOLLLOW THESE INSTRUCTIONS, THE WEBSITE WILL "  
+          isOpen={showParagraphPopup}
+          customStyles={dangerPopupStyles}
+          showCloseButton={false}
+          onExpand={handleExpandPopup}
+        >
+          <img src="/danger2.gif" alt="Danger" />
+          <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', top: 0, left: 0, width: '50px' }}/>
+          <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', top: 0, right: 0, width: '50px' }}/>
+          <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', bottom: 0, left: 0, width: '50px' }} onClick={handleDangerPopupClose}/>
+          <img src="/nuclear1.gif" alt="Nucleear" style={{ position: 'absolute', bottom: 0, right: 0, width: '50px' }}/>
+        </PopUp>
+        <PopUp
+          message="lol, you thought"
+          isOpen={showPasswordPopup}
+          onClose={() => setShowPasswordPopup(false)}
+          showCloseButton={true}
+          customStyles={passwordStyles}
+        >
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img src="/bush_laughing.gif" alt="laughing-at-you" />
+            <div style={{ marginLeft: '10px' }}>
+              <button onClick={handleArrowClick} style={{ position: 'absolute', top: 0, right: 0 }}>V</button>
+            </div>
+          </div>
+        </PopUp>
+        <div className='welcome-gifs'>
+          <img src="/welcome1.gif" alt="Welcome 1" className='welcome-gif1' />
+          <img src="/welcome2.gif" alt="Welcome 2" className='welcome-gif2' />
+          <img src="/welcome3.gif" alt="Welcome 3" className='welcome-gif3' />
+          <img src="/welcome4.gif" alt="Welcome 4" className='welcome-gif4' onClick={handleScrollToBottom} />
+          <img src="welcome10.gif" alt=" " className='welcome-gif' />
+          <img src="/welcome5.gif" alt="Welcome 5" className='welcome-gif5' />
+          <img src="/welcome6.gif" alt="Welcome 6" className='welcome-gif6' />
+        </div>
+        <div className='important-paragraph' onClick={handleParagraphClick}>
+          <p>This is an important paragraph that should be read carefully. The nuclear codes will be included at the end of the paragraph, SO MAKE SURE YOU READ IT!! The nuclear codes: 234, 94, 12033.</p>
+        </div>
+        <StartForm onSecretClick={handleSecretClick} />
+        <marquee behavior="scroll" direction="right">
+          <img src="/pirate-ship1.gif" alt="Ship"/>
+        </marquee>
+        <div className='waterbar'></div>
       </div>
-      <div className='important-paragraph' onClick={handleParagraphClick}>
-        <p>This is an important paragraph that should be read carefully. The nuclear codes will be included at the end of the paragraph, SO MAKE SURE YOU READ IT!! The nuclear codes: 234, 94, 12033.</p>
+      <div className="section-two">
+        <div>
+          <img src="/news.gif" alt="News" className='news' onClick={handleNewsletterClick} />
+          <img src="/password.gif" alt="Password" className='password' onClick={handlePasswordClick} />
+          <img src="/windows95.gif" alt="Windows 95" className='windows95' onClick={handleWindows95Click} />
+          {showBillGates && <img src="/billgates.gif" alt="Bill Gates" className='billgates' />}
+        </div>
+        <h3>hi, i'm forrest and this is my website. i've put a lot of work into this website by creating something that is the opposite of good design. scrolling doesn't owrk right, some things you can click that you shouldn't and can't click that you should. the form is probably my favorite. plus there areh hidden Easter eggs and a huge surprise at the end! but you have to work for it. good luck </h3>
+        <Flags ref={flagsRef}/>
       </div>
-      <StartForm onSecretClick={handleSecretClick} />
-      <marquee behavior="scroll" direction="right">
-        <img src="/pirate-ship1.gif" alt="Ship"/>
-      </marquee>
-      <div className='waterbar'></div>
-      <div>
-        <img src="/news.gif" alt="News" className='news' onClick={handleNewsletterClick} />
-        <img src="/password.gif" alt="Password" className='password' onClick={handlePasswordClick} />
-        <img src="/windows95.gif" alt="Windows 95" className='windows95' onClick={handleWindows95Click} />
-        {showBillGates && <img src="/billgates.gif" alt="Bill Gates" className='billgates' />}
-      </div>
-      <h3>hi, i'm forrest and this is my website. i've put a lot of work into this website by creating something that is the opposite of good design. scrolling doesn't owrk right, some things you can click that you shouldn't and can't click that you should. the form is probably my favorite. plus there areh hidden Easter eggs and a huge surprise at the end! but you have to work for it. good luck </h3>
-      <Flags ref={flagsRef}/>
     </div>
   )
 }
 
-export default App
+export default App;
